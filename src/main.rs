@@ -229,10 +229,10 @@ fn main() {
         Field::Int(IntField { name: Some("solvesPerSyllable"), min: Some(-5000), max: Some(5000), bits: None, always_present: None }),
         Field::Int(IntField { name: Some("turnDuration"), min: Some(1), max: Some(10), bits: None, always_present: None }),
         Field::Int(IntField { name: Some("startingLives"), min: Some(1), max: Some(5), bits: None, always_present: None }),
-	    Field::Int(IntField { name: Some("maxLives"), min: Some(1), max: Some(5), bits: None, always_present: None }),
-	    Field::Int(IntField { name: Some("syllableDuration"), min: Some(1), max: Some(10), bits: None, always_present: None }),
-	    Field::Boolean(BooleanField { name: Some("allowHyphensAndApostrophesInSyllables"), bits: None }),
-	    Field::Bytes(BytesField { name: Some("buffer"), max: Some(1000), bits: None }),
+	Field::Int(IntField { name: Some("maxLives"), min: Some(1), max: Some(5), bits: None, always_present: None }),
+	Field::Int(IntField { name: Some("syllableDuration"), min: Some(1), max: Some(10), bits: None, always_present: None }),
+	Field::Boolean(BooleanField { name: Some("allowHyphensAndApostrophesInSyllables"), bits: None }),
+	Field::Bytes(BytesField { name: Some("buffer"), max: Some(1000), bits: None }),
     ];  
 
     let mut hashmap: HashMap<&str, Value> = HashMap::new();
