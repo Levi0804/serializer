@@ -36,13 +36,9 @@ enum Value<'a> {
     Boolean(bool),
 }
 
-#[allow(unused)]
 #[derive(Debug)]
 struct Schema<'a> {
     fields: Vec<Field<'a>>,
-    int: i32,
-    max_byte_length: i32,
-    bytes: Vec<i32>,
 }
 
 impl<'a> Schema<'a> {
@@ -94,14 +90,7 @@ impl<'a> Schema<'a> {
             }
         }); 
 
-        let max_byte_length = ((max_bits / 8) as f32).ceil() as i32;
-
-        Schema {    
-            fields: v,
-            int: 0,
-            max_byte_length,
-            bytes: Vec::<i32>::new(),
-        }
+        Schema { fields: v }
     }
 
     fn to_buffer(&self, value: HashMap<&'a str, Value>) -> Vec<u8> {
