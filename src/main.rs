@@ -162,13 +162,8 @@ impl<'a> Schema<'a> {
     
     fn from_buffer(&'a self, buffer: &'a Vec<u8>) -> HashMap<&'a str, Value> {
         let fields = &self.fields;
-        let buffer_u8 = buffer;
-        let buffer = buffer
-            .into_iter()
-            .map(|x| *x as i32)
-            .collect::<Vec<i32>>();
 
-        let mut int = buffer[0];
+        let mut int = buffer[0] as i32;
         let mut read_bits = 8;
         let mut buffer_index = 1;
 
@@ -192,7 +187,7 @@ impl<'a> Schema<'a> {
             };
 
             while read_bits < bits {
-                int |= buffer[buffer_index] << read_bits;
+                int |= (buffer[buffer_index] as i32) << read_bits;
                 buffer_index += 1;
                 read_bits += 8;
             }   
@@ -212,7 +207,7 @@ impl<'a> Schema<'a> {
                 let length = (int & mask) as usize;
                 int >>= bits;
                 read_bits -= bits;
-                value.insert(name.unwrap(), Value::Buffer(&buffer_u8[buffer_u8.len() - length..buffer_u8.len()]));
+                value.insert(name.unwrap(), Value::Buffer(&buffer[buffer.len() - length..buffer.len()]));
             }
         }
 
